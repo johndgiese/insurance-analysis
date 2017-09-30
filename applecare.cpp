@@ -26,12 +26,12 @@ int main(int argc, char** argv) {
 
     double average_outcome_insurance = 0;
     double average_outcome_no_insurance = 0;
-    int num_simulations = 10000;
+    int num_simulations = 100000000;
     for (int i = 0; i < num_simulations; i++) {
         bool broke_phone = broke_phone_dist(rng) == 0;
         if (broke_phone) {
             double years_in = years_in_dist(rng);
-            double depreciated_phone_cost = phone_cost*years_in/max_years_in;
+            double depreciated_phone_cost = phone_cost*(max_years_in - years_in)/max_years_in;
             if (years_in > apple_care_cutoff) {
                 average_outcome_no_insurance -= depreciated_phone_cost;
                 average_outcome_insurance -= (insurance_cost + depreciated_phone_cost);
